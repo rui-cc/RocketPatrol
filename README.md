@@ -1,6 +1,6 @@
-# 2020.04.12
 # RocketPatrol
 A Phaser3 clone/remake of the APF-M1000 built-in gallery shooter, Rocket Patrol.
+2020.04.12
 
 1. assets file
      - 4 images

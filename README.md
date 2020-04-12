@@ -12,7 +12,7 @@ A Phaser3 clone/remake of the APF-M1000 built-in gallery shooter, Rocket Patrol.
      - Spaceship.js
 4. src file
      - scenes file
-         > Menu.js
-         > Play.js
+         - Menu.js
+         - Play.js
      - main.js
 5. index.html

@@ -8,15 +8,19 @@ class Menu extends Phaser.Scene{
         this.load.audio('sfx_select', './assets/blip_select12.wav');
         this.load.audio('sfx_explosion', './assets/explosion38.wav');
         this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
+        //load title screen
+        this.load.image('title', './assets/title.png');
     }
 
     create(){
+        //title screen display
+        this.title = this.add.tileSprite(0, 0, 640, 480, 'title').setOrigin(0,0);
         // menu display
         let menuConfig = {
-            fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            fontFamily: 'Serif',
+            fontSize: '34px',
+            backgroundColor: '#e6a5c4',
+            color: '#482091',
             align: 'right',
             padding: {
                 top: 5,
@@ -30,33 +34,32 @@ class Menu extends Phaser.Scene{
         let centerY = game.config.height/2;
         let textSpacer = 64;
 
-        this.add.text(centerX, centerY - textSpacer, 'ROCKET PATROL', menuConfig).setOrigin(0.5);
-        this.add.text(centerX, centerY, 'Use <- -> arrows to move & (F) to Fire', menuConfig).setOrigin(0.5);
-        menuConfig.backgroundColor = '#00FF00';
+        this.add.text(centerX, centerY - textSpacer, 'Shopping In Quarantine', menuConfig).setOrigin(0.5);
+        menuConfig.fontFamily = 'Sans-serif';
+        menuConfig.fontSize = '28px';
+        menuConfig.backgroundColor = '#f7d1a6';
+        this.add.text(centerX, centerY + textSpacer/2, 'Use ← → arrows or mouse to move', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY + textSpacer, 'Use (B) or click to buy)', menuConfig).setOrigin(0.5);
+        menuConfig.backgroundColor = '#ded197';
         menuConfig.color = '#000';
-        this.add.text(centerX, centerY + textSpacer, 'Press <- for Easy or -> for Hard', menuConfig).setOrigin(0.5);
-
-        //this.add.text(20, 20, "Rocket Patrol Menu");
-
-        //change scenes
-        //this.scene.start("playScene");
+        this.add.text(centerX, centerY + textSpacer*2, 'Press ↑ for Easy or ↓ for Hard', menuConfig).setOrigin(0.5);
 
         //define keys
-        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
-        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     }
 
     update(){
-        if (Phaser.Input.Keyboard.JustDown(keyLEFT)){
+        if (Phaser.Input.Keyboard.JustDown(keyUP)){
             //easy mode
             game.settings = {
                 spaceshipSpeed: 3,
                 gameTimer: 60000
             }
             this.sound.play('sfx_select');
-            this.scene.start("playScene");
+            this.scene.start("playScene");           
         }
-        if (Phaser.Input.Keyboard.JustDown(keyRIGHT)){
+        if (Phaser.Input.Keyboard.JustDown(keyDOWN)){
             //hard mode
             game.settings = {
                 spaceshipSpeed: 4,
